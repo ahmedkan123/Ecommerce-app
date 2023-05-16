@@ -37,12 +37,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         productCategoryRepo.save(category);
     }
 
-//    public void deactivateCategory(Long categoryId) {
-//        ProductCategory category = productCategoryRepo.findById(categoryId)
-//                .orElseThrow(NoSuchElementException::new);
-//        category.setActive(false);
-//        productCategoryRepo.save(category);
-//    }
+    public void deactivateCategory(Long categoryId) {
+        ProductCategory category = productCategoryRepo.findById(categoryId)
+                .orElseThrow(NoSuchElementException::new);
+        category.setActive(false);
+        productCategoryRepo.save(category);
+    }
 
 
 }

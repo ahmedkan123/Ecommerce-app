@@ -4,7 +4,6 @@ import com.example.EcommerceApp.entity.Product;
 import com.example.EcommerceApp.repository.ProductRepo;
 import com.example.EcommerceApp.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
