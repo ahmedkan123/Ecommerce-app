@@ -10,12 +10,13 @@ import java.util.List;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Long> {
+    List<Product> findByActiveTrue();
     @Query(value = "select product from Product product join product.productCategory "
             + "category where category.categoryId = :categoryId")
     List<Product> findByProductCategoryId(Long categoryId);
     @Query(value = "select product from Product product join product.productCategory"
             + " category where category.categoryId = :categoryId"
-            + " and product.price between :minPrice and :maxPrice")
+            + " and product.price >= :minPrice and product.price <= :maxPrice")
     List<Product> findByProductCategoryAndPriceRange(Long categoryId,Double minPrice, Double maxPrice);
 
 

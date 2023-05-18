@@ -1,19 +1,20 @@
 package com.example.EcommerceApp.service;
 
 import com.example.EcommerceApp.entity.Product;
+import com.example.EcommerceApp.model.ProductModel;
 
 import java.util.List;
 
 public interface ProductService {
-    Product addProduct(Product product);
+    ProductModel addProduct(ProductModel  productModel);
+    ProductModel updateProduct(ProductModel  productModel);
 
-    Product updateProduct(Product product);
-
-    List<Product> getAllProducts();
+    List<ProductModel> getAllProducts();
 
     void activateProduct(Long productId);
 
     void deactivateProduct(Long productId);
+    List<Product> findByActiveTrue();
 
     List<Product> findByProductCategoryId(Long categoryId);
 

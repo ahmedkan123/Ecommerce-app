@@ -1,23 +1,25 @@
 package com.example.EcommerceApp.model;
 
 import com.example.EcommerceApp.entity.ProductCategory;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Data
 public class ProductModel {
-
+    private Long productId;
     @NotNull(message = "product can not null value")
     @NotEmpty(message = "should be enter product name")
     private String productName;
+    @Size(max = 1000, message = "Product description must be no more than " +
+            "1000 characters")
     private String description;
-    @Max(value = 30000)
-    @Min(value = 100)
+    @NotNull(message = "Product price is required")
+    @Positive(message = "Product price must be greater than zero")
     private double price;
+    @Positive(message = "Product quantity must be greater than or equal zero")
+    private Long quantity;
+    private boolean active;
+    private ProductCategory productCategory;
 
 }

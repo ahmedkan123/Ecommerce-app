@@ -10,9 +10,9 @@ import java.util.List;
 public interface ProductCategoryService {
     ProductCategory addCategory(ProductCategory productCategory);
     ProductCategory updateCategory(ProductCategory category);
-    List<ProductCategory> getAllCategories();
     void activateCategory(Long categoryId);
-//    void deactivateCategory(Long categoryId);
+    List<ProductCategory> getAllCategories();
+    List<ProductCategory> findByActiveTrue();
 
 
 }

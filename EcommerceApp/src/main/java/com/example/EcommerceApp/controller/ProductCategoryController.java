@@ -3,7 +3,6 @@ package com.example.EcommerceApp.controller;
 
 import com.example.EcommerceApp.entity.ProductCategory;
 import com.example.EcommerceApp.service.implementation.ProductCategoryServiceImpl;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,15 +27,14 @@ public class ProductCategoryController {
     public List<ProductCategory> getAllCategories() {
         return productCategoryService.getAllCategories();
     }
-
+    @GetMapping("/active")
+    public List<ProductCategory> findActiveCategoryTrue() {
+        return productCategoryService.findByActiveTrue();
+    }
     @PutMapping("/{id}/activate")
     public void activateCategory(@PathVariable(value = "id") Long categoryId) {
         productCategoryService.activateCategory(categoryId);
     }
 
-//    @PutMapping("/{id}/deactivate")
-//    public void deactivateCategory(@PathVariable(value = "id") Long categoryId) {
-//        productCategoryService.deactivateCategory(categoryId);
-//    }
 
 }

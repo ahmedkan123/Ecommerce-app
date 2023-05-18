@@ -17,10 +17,12 @@ public class Product {
     @Column(name = "Product_name")
     private String productName;
     private String description;
+    private Long quantity;
     private double price;
+    private boolean active;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private ProductCategory productCategory;
-    private boolean active;
+
 
 }
