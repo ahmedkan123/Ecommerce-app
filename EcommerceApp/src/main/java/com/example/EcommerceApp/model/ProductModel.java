@@ -17,8 +17,6 @@ public class ProductModel {
     @NotNull(message = "Product price is required")
     @Positive(message = "Product price must be greater than zero")
     private double price;
-    @Positive(message = "Product quantity must be greater than or equal zero")
-    private Long quantity;
     private boolean active;
     private ProductCategory productCategory;
 
