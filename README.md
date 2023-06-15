@@ -12,7 +12,7 @@ Admin can manage orders and shipment statuses
 Customer can confirm the shipment has been delivered
 
 # Technologies Used
-Java
-Spring Boot Framework
-Angular
-MYSQL
+. Java
+. Spring Boot Framework
+. Angular
+. MYSQL
