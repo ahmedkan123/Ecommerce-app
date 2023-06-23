@@ -13,23 +13,24 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductServiceImpl productService;
 
-    @PostMapping("")
+    @PostMapping
     public ProductModel addProduct(@Valid @RequestBody ProductModel productModel) {
         return productService.addProduct(productModel);
     }
 
-    @PutMapping("")
+    @PutMapping
     public ProductModel updateProduct(@Valid @RequestBody ProductModel productModel) {
         return productService.updateProduct(productModel);
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<ProductModel> getAllProducts() {
         return productService.getAllProducts();
     }
@@ -60,5 +61,9 @@ public class ProductController {
             , @RequestParam(value = "minPrice") Double minPrice
             , @RequestParam(value = "maxPrice") Double maxPrice) {
         return productService.findByProductCategoryAndPriceRange(categoryId, minPrice, maxPrice);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable(value = "id") Long productId) {
+        productService.deleteProduct(productId);
     }
 }

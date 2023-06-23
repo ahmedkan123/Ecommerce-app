@@ -22,4 +22,5 @@ public interface ProductService {
     List<Product> findByProductCategoryAndPriceRange(Long categoryId,
                                                             Double minPrice,
                                                             Double maxPrice);
+    void deleteProduct(Long productId);
 }

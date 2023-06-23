@@ -2,12 +2,11 @@ package com.example.ecommerceapp.model;
 
 import com.example.ecommerceapp.entity.ProductCategory;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductModel {
@@ -22,6 +21,6 @@ public class ProductModel {
     @Positive(message = "Product price must be greater than zero")
     private double price;
     private boolean active;
-    private ProductCategory productCategory;
+    private ProductCategoryModel productCategory;
 
 }

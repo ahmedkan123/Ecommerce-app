@@ -1,6 +1,8 @@
 package com.example.ecommerceapp.service.implementation;
 
 import com.example.ecommerceapp.entity.ProductCategory;
+import com.example.ecommerceapp.mapper.ProductCategoryMapper;
+import com.example.ecommerceapp.model.ProductCategoryModel;
 import com.example.ecommerceapp.repository.ProductCategoryRepo;
 import com.example.ecommerceapp.service.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
@@ -8,12 +10,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     private final ProductCategoryRepo productCategoryRepo;
+    private final ProductCategoryMapper productCategoryMapper;
     @Override
     public ProductCategory addCategory(ProductCategory productCategory) {
         return productCategoryRepo.save(productCategory);

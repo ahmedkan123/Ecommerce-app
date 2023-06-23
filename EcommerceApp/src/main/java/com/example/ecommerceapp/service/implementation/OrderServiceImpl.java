@@ -19,7 +19,8 @@ public class OrderServiceImpl implements OrderService {
     private final OrderItemServiceImpl orderItemService;
 
     @Override
-    public Order createOrder(Customer customer, List<OrderItemModel> orderItemModels) {
+    public Order createOrder(Customer customer
+            , List<OrderItemModel> orderItemModels) {
         Order order = new Order();
         order.setCustomer(customer);
         order.setShipped(false);
@@ -33,13 +34,11 @@ public class OrderServiceImpl implements OrderService {
 
         return orderRepo.save(order);
     }
-
     @Override
     public Order findOrderById(Long orderId) {
         return orderRepo.findById(orderId)
                 .orElseThrow(() -> new OrderNotFoundException("Order is not found"));
     }
-
     @Override
     public void updateOrderShippedStatus(Long orderId, boolean shipped) {
         Order order = orderRepo.findById(orderId)

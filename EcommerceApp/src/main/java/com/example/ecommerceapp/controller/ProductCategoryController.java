@@ -2,6 +2,7 @@ package com.example.ecommerceapp.controller;
 
 
 import com.example.ecommerceapp.entity.ProductCategory;
+import com.example.ecommerceapp.model.ProductCategoryModel;
 import com.example.ecommerceapp.service.implementation.ProductCategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,19 +12,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/productCategory")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductCategoryController {
     @Autowired
     private ProductCategoryServiceImpl productCategoryService;
-    @PostMapping("")
+    @PostMapping
     public ProductCategory addProductCategory(@RequestBody  ProductCategory productCategory) {
         return productCategoryService.addCategory(productCategory);
     }
-    @PutMapping("")
+    @PutMapping
     public ProductCategory updateCategory(@RequestBody  ProductCategory category) {
         return productCategoryService.updateCategory(category);
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<ProductCategory> getAllCategories() {
         return productCategoryService.getAllCategories();
     }

@@ -46,9 +46,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductById(Long productId) {
-        Product product = productRepo.findById(productId)
+        return productRepo.findById(productId)
                 .orElseThrow(() -> new ProductNotFoundException("product is not found"));
-        return product;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepo.findAll()
                 .stream()
                 .map(productMapper::toModel)
-                .collect(Collectors.toList());
+                .toList();
     }
     @Override
     public void activateProduct(Long productId) {
@@ -86,6 +85,16 @@ public class ProductServiceImpl implements ProductService {
                                                             Double maxPrice) {
         return productRepo.findByProductCategoryAndPriceRange(categoryId
                 , minPrice, maxPrice);
+    }
+
+    @Override
+    public void deleteProduct(Long productId) {
+        Optional<Product> existingProduct = productRepo.findById(productId);
+        if (existingProduct.isPresent()) {
+            productRepo.deleteById(productId);
+        } else {
+            throw new ProductNotFoundException("Product not found with id: " + productId);
+        }
     }
 
 

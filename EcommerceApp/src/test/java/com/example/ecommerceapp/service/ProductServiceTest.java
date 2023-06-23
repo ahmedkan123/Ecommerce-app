@@ -1,12 +1,10 @@
 package com.example.ecommerceapp.service;
 
 import com.example.ecommerceapp.entity.Product;
-import com.example.ecommerceapp.exception.ProductNotFoundException;
 import com.example.ecommerceapp.mapper.ProductMapper;
 import com.example.ecommerceapp.model.ProductModel;
 import com.example.ecommerceapp.repository.ProductRepo;
 import com.example.ecommerceapp.service.implementation.ProductServiceImpl;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -58,28 +56,14 @@ class ProductServiceTest {
     @Test
     void givenProductModel_whenUpdateProduct_thenReturnProductUpdated() {
         //Arrange
-        long productId = 1L;
-        ProductModel productModel = new ProductModel();
-        productModel.setProductId(productId);
-        productModel.setProductName("Updated Product");
-        productModel.setDescription("test description");
-        productModel.setPrice(10.0);
-        productModel.setActive(true);
-
-        Product product = new Product();
-        product.setProductId(productId);
-        product.setProductName("Updated Product");
-        product.setDescription("test description");
-        product.setPrice(10.0);
-        product.setActive(true);
-        product = productMapper.toEntity(productModel);
+        ProductModel productModel = new ProductModel(1L,"Updated Product","test description",10.0,true,null);
+        Product product = productMapper.toEntity(productModel);
         //Mock
-        when(productRepo.findById(productId)).thenReturn(Optional.of(product));
+        when(productRepo.findById(product.getProductId())).thenReturn(Optional.of(product));
         when(productRepo.save(any(Product.class))).thenReturn(product);
         //Action
         ProductModel updatedProductModel = productService.updateProduct(productModel);
         //Assert
-        assertThat(updatedProductModel.getProductId()).isEqualTo(1);
         assertNotNull(updatedProductModel);
         assertNotNull(updatedProductModel.getProductId()); // Add null check here
         assertEquals(productModel.getProductId(), updatedProductModel.getProductId());
